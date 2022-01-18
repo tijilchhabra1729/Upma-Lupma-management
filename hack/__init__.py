@@ -13,7 +13,6 @@ app.config['SECRET_KEY'] = 'mysecretkey'
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir,'data.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config["MONGO_URI"] = "mongodb+srv://Arnav:moaksh@cluster0.df1ez.mongodb.net/db?retryWrites=true&w=majority"
 mongo = PyMongo(app)
 db = SQLAlchemy(app)
 Migrate(app,db)
