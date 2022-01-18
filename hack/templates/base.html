@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head class="text-monospace">
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pushpandha chocolate factory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <link rel="shortcut icon" href="../static/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Open+Sans:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="../static/styles.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js" integrity="sha512-TW5s0IT/IppJtu76UbysrBH9Hy/5X41OTAbQuffZFU6lQ1rdcLHzpU5BzVvr/YFykoiMYZVWlr/PX1mDcfM9Qg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="../static/styles.css" rel="stylesheet">
+
+    <nav class="nav-main">
+           <div class="logo-container">
+             <a href="{{ url_for('home')}}"><img src="../static/logo white 2.png" alt="logo" class="logo"></a>
+           </div>
+            <div class="nav-links">
+              {%if current_user.is_authenticated%}
+                {%if current_user.roles == 'god' or current_user.roles == 'raw'%}
+                  <a class="nav-link" href="{{url_for('raw')}}">Raw Input</a>
+                {%endif%}
+                {%if current_user.roles == 'god' or current_user.roles == 'sell'%}
+                <a class="nav-link" href="{{url_for('sell')}}">Sales Input</a>
+                {%endif%}
+                {%if current_user.roles == 'god' or current_user.roles == 'manufacture'%}
+                <a class="nav-link" href="{{url_for('manufacture')}}">Manufacture Input</a>
+                {%endif%}
+                  {%if current_user.roles == 'god'%}
+                <a class="nav-link" href="{{url_for('admin')}}">Admin Pannel</a>
+                {%endif%}
+              <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+              <div class="toggleNav"></div>
+            </div>
+
+            <div class="navbar-responsive">
+                {%if current_user.roles == 'god' or current_user.roles == 'raw'%}
+                  <a class="navbar-responsive__link" href="{{url_for('raw')}}">Raw Input</a>
+                {%elif current_user.roles == 'god' or current_user.roles == 'sell'%}
+                <a class="navbar-responsive__link" href="{{url_for('sell')}}">Sales Input</a>
+                {%elif current_user.roles == 'god' or current_user.roles == 'manufacture'%}
+                <a class="navbar-responsive__link" href="{{url_for('manufacture')}}">Manufacture Input</a>
+                {%endif%}
+              <a href="{{url_for('logout')}}" class="navbar-responsive__link">Logout</a>
+            </div>
+            {%else%}
+            <nav class="nav">
+              <a class="nav-link" href="{{ url_for('login')}}">Login</a>
+            </nav>
+            {%endif%}
+
+    </nav>
+
+</head>
+<script src="../static/nav.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<body class="text-monospace font-italic">
+
+{% block content %}
+
+{% endblock %}
+
+</body>
+</html>
